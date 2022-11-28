@@ -57,6 +57,20 @@ class LinkedListWithArray
     @size -= 1
   end
 
+  def remove(value)
+    index = 0
+    index += 1 while index < @size && @data[index].value < value
+
+    return false if @size == index
+
+    while index < @size
+      @data[index] = @data[index + 1]
+      index += 1
+    end
+    @size -= 1
+    true
+  end
+
   def print
     puts '=================================================='
     (0..@size - 1).each { |index| puts @data[index].value }
