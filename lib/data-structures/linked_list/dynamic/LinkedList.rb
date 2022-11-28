@@ -48,11 +48,63 @@ class LinkedList
     end
   end
 
+  def remove_begin
+    raise 'List vazia' if @list.nil?
+
+    node = @list
+    @list = @list.next_element
+
+    node.next_element = nil
+    node.value = nil
+  end
+
+  def remove_end # rubocop:disable Metrics/MethodLength
+    raise 'List vazia' if @list.nil?
+
+    current = @list
+    before = nil
+
+    while current.next_element
+      before = current
+      current = current.next_element
+    end
+
+    if current == @list
+      @list = nil
+    else
+      before.next_element = current.next_element
+    end
+  end
+
+  def remove(value) # rubocop:disable Metrics/MethodLength
+    raise 'List vazia' if @list.nil?
+
+    current = @list
+    before = nil
+
+    while current && current.value != value
+      before = current
+      current = current.next_element
+    end
+
+    return false if current.nil?
+
+    if current == @list
+      remove_begin
+    else
+      before.next_element = current.next_element
+    end
+
+    true
+  end
+
   def print
     aux = @list
+    puts '================================='
     while aux
       puts aux.value
       aux = aux.next_element
     end
+    puts '================================='
   end
 end
