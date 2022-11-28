@@ -14,6 +14,29 @@ class LinkedListWithArray
     @data << node
   end
 
+  def insert_order(node)
+    index = 0
+    size = length
+    index += 1 while index < size && @data[index].value < node.value
+
+    k = length - 1
+    while k >= index
+      @data[k + 1] = @data[k]
+      k -= 1
+    end
+    @data[index] = node
+  end
+
+  def search(key)
+    index = 0
+    size = length
+    index += 1 while index < size && @data[index].value < key
+
+    return false if size == index
+
+    @data[index].value == key
+  end
+
   def print
     @data.each { |node| puts node.value }
   end
