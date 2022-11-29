@@ -59,9 +59,10 @@ class LinkedListWithArray
 
   def remove(value)
     index = 0
-    index += 1 while index < @size && @data[index].value < value
+    index += 1 while index < @size && @data[index].value != value
 
     return false if @size == index
+    return false if @data[index].value != value
 
     while index < @size
       @data[index] = @data[index + 1]
