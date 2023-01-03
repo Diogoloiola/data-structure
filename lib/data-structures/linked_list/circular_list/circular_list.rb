@@ -1,8 +1,10 @@
 require_relative 'node'
+require_relative 'linked_base'
 
-class CircularList
+class CircularList < LinkedBase
   def initialize
     @list = nil
+    super
   end
 
   def append(value)

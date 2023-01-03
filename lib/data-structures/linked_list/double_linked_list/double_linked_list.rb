@@ -1,8 +1,10 @@
 require_relative 'node'
+require_relative 'linked_base'
 
-class DoubleLinkedList
+class DoubleLinkedList  < LinkedBase
   def initialize
     @list = nil
+    super
   end
 
   def append(value)

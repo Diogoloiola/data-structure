@@ -1,8 +1,10 @@
 require_relative 'node'
+require_relative 'linked_base'
 
-class LinkedList
+class LinkedList < LinkedBase
   def initialize
     @list = nil
+    super
   end
 
   def append(value)
@@ -13,7 +15,7 @@ class LinkedList
     @list = Node.new(value, @list)
   end
 
-  def prepend(value)
+  def insert_end(value)
     new_node = Node.new(value)
 
     return @list = new_node if @list.nil?
@@ -76,7 +78,7 @@ class LinkedList
     end
   end
 
-  def remove(value) # rubocop:disable Metrics/MethodLength
+  def remove_only_node(value) # rubocop:disable Metrics/MethodLength
     raise 'List vazia' if @list.nil?
 
     current = @list
@@ -98,7 +100,7 @@ class LinkedList
     true
   end
 
-  def print
+  def print_list
     aux = @list
     puts '================================='
     while aux
